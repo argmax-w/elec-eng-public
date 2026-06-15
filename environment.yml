@@ -1,0 +1,18 @@
+# One environment covers all four projects; the stack is deliberately light.
+name: elec-eng-public
+channels:
+  - conda-forge
+dependencies:
+  - python=3.12
+  - numpy
+  - scipy
+  - pandas
+  - matplotlib
+  - pyyaml
+  - jupyterlab
+  - nbconvert
+  - ipykernel
+  - pytest
+  - ruff
+  - pre-commit
+  - git-crypt

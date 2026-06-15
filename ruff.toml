@@ -1,0 +1,16 @@
+# Repository-wide lint and format configuration, shared by every project.
+line-length = 100
+target-version = "py311"
+src = ["src", "tests", "scripts"]
+
+# The withheld kernels are git-crypt encrypted, so on a public checkout they are
+# ciphertext rather than Python. Never try to lint them.
+extend-exclude = ["**/_kernel.py", "**/_engine.py", "**/_params.py"]
+
+[lint]
+select = ["E", "F", "W", "I", "UP", "B", "NPY", "RUF"]
+
+[lint.per-file-ignores]
+# Notebooks mix narrative cells with code, so imports do not sit at the top of
+# the file and bare expressions are used for display.
+"**/notebooks/*" = ["E402", "E501", "B018"]

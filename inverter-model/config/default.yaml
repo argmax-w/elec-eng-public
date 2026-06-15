@@ -1,0 +1,51 @@
+# Config for the time-domain grid-following inverter simulation.
+#
+# All quantities are SI: seconds, volts, amperes, henries, farads, hertz. The
+# electrical parameters cover the four cascaded stages (boost converter,
+# sinusoidal PWM, output filter, analogue PLL). The simulation block sets the
+# integration horizon and step. The defaults integrate a fraction of a second
+# at a step coarse enough to run in seconds while still resolving the PWM
+# carrier and showing the loop lock. See docs/model.md for the original
+# microsecond-resolution settings.
+
+grid:
+  frequency: 50.0 # hertz, grid reference the loop synchronises to
+  reference_amplitude: 1.0 # volts, amplitude of the grid reference signal
+
+boost:
+  inductance: 2.0e-6 # henries
+  capacitance: 47.0e-6 # farads
+  load_resistance: 2.0 # ohms, across the output capacitor
+  switching_frequency: 2.0e6 # hertz, PWM carrier of the boost stage
+  duty: 0.5 # closed fraction of each switching period
+  input_voltage: 2.5 # volts, dc source feeding the boost stage
+
+modulator:
+  base_frequency: 50.0 # hertz, nominal output frequency before correction
+  pulses_per_half_cycle: 25 # sinusoidal-PWM pulses per half mains cycle
+
+filter:
+  capacitance: 2.0e-6 # farads; the resistance is designed from this
+  corner_frequency: 50.5 # hertz, low-pass corner just above the mains line
+
+pll:
+  capacitance: 2.0e-6 # farads, loop-filter capacitor
+  peak_resistance: 1.0e4 # ohms, peak-detector discharge resistance
+  peak_capacitance: 50.0e-6 # farads, peak-detector hold capacitor
+  comparator_gain: 0.05 # phase-comparator gain into the modulator
+
+power:
+  active_power: 1.0 # per-unit active power into the grid tie
+  reactive_power: 0.3 # per-unit reactive power into the grid tie
+  tie_inductance: 1.0e-3 # henries, inductive coupling to the grid
+  grid_amplitude: 1.0 # volts, grid voltage magnitude at the tie
+
+simulation:
+  start_time: 1.0e-6 # seconds
+  duration: 0.5 # seconds of simulated time
+  timestep: 2.0e-7 # seconds, integration step (resolves the 2 MHz carrier)
+  settle_fraction: 0.6 # fraction of the record treated as settled steady state
+
+paths:
+  artifacts: artifacts
+  figures: reports/figures

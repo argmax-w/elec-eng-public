@@ -1,0 +1,21 @@
+# Placeholder fleet.
+#
+# The fitted behavioural parameters behind the published load curve are withheld
+# (encrypted with git-crypt, in src/evattendance/_params.py). These round numbers
+# only show the structure a fleet config expects. They are not the parameters used
+# for the README results, and the engine that turns them into a load curve is also
+# withheld.
+charger_kw: 7.0
+categories:
+  - name: customer
+    fleet_size: 50
+    arrival:
+      - { mean: 9.0, sigma: 1.0, weight: 1.0 }
+    departure:
+      - { mean: 17.0, sigma: 1.5, weight: 1.0 }
+  - name: employee
+    fleet_size: 10
+    arrival:
+      - { mean: 8.0, sigma: 0.5, weight: 1.0 }
+    departure:
+      - { mean: 16.0, sigma: 0.5, weight: 1.0 }

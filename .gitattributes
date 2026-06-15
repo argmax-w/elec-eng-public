@@ -1,0 +1,6 @@
+# Withheld kernels are transparently encrypted with git-crypt. The repository
+# keeps a full encrypted backup of them, but they are unreadable without the
+# key, so the core methods and fitted parameters are not published.
+sequence-analysis/src/seqanalysis/_kernel.py    filter=git-crypt diff=git-crypt
+ev-attendance-generator/src/evattendance/_engine.py  filter=git-crypt diff=git-crypt
+ev-attendance-generator/src/evattendance/_params.py  filter=git-crypt diff=git-crypt
